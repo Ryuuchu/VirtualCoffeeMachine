@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCoffeeMachine", "VirtualCoffeeMachine\VirtualCoffeeMachine.csproj", "{4FD7BA4F-BE5B-4370-BE90-35785C816540}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualCoffeeMachineContAPI", "VirtualCoffeeMachine\VirtualCoffeeMachineContAPI.csproj", "{4FD7BA4F-BE5B-4370-BE90-35785C816540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCoffeeMachineMinAPI", "VirtualCoffeeMachineMinAPI\VirtualCoffeeMachineMinAPI.csproj", "{B37285BE-A780-4C65-91DC-1153DFAFDDDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4FD7BA4F-BE5B-4370-BE90-35785C816540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FD7BA4F-BE5B-4370-BE90-35785C816540}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FD7BA4F-BE5B-4370-BE90-35785C816540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B37285BE-A780-4C65-91DC-1153DFAFDDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B37285BE-A780-4C65-91DC-1153DFAFDDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B37285BE-A780-4C65-91DC-1153DFAFDDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B37285BE-A780-4C65-91DC-1153DFAFDDDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
