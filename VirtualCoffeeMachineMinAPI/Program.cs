@@ -1,9 +1,27 @@
+using System.Net;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 CoffeeQueue _coffeeQueue = new();
 
-app.MapGet("/brew-coffee", () =>
+string URL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/22889?";
+string apiKey = "apikey=yyVx9kMJlA0CJQDYGY8D79trkLNKRnBl";
+
+app.MapGet("/brew-coffee", async () =>
 {
+    HttpClient client = new HttpClient();
+    HttpResponseMessage response = await client.GetAsync(URL+apiKey);
+    response.EnsureSuccessStatusCode();
+    string responseBody = await response.Content.ReadAsStringAsync();
+
+    JsonNode weatherForecast = JsonNode.Parse(responseBody)!;
+
+    float temperatureNode = (float)weatherForecast!["DailyForecasts"]![0]!["Temperature"]!["Maximum"]!["Value"];
+    //Test case for over 30°C
+    //float temperatureNode = 88f;
+
     if (_coffeeQueue.Count() == 4)
     {
         _coffeeQueue.Clear();
@@ -16,6 +34,11 @@ app.MapGet("/brew-coffee", () =>
     if (coffee.prepared.Contains("04-01"))
     {
         return Results.StatusCode(418);
+    }
+
+    if((temperatureNode - 32)*0.5556 > 30)
+    {
+        coffee.message = "Your refreshing iced coffee is ready";
     }
 
     return Results.Ok(coffee);
