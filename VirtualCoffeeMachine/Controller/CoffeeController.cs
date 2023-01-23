@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using VirtualCoffeeMachineContAPI.Models;
 
 namespace VirtualCoffeeMachineContAPI.Controller
@@ -19,23 +17,28 @@ namespace VirtualCoffeeMachineContAPI.Controller
         [HttpGet("/brew-coffee")]
         public async Task<ActionResult<Coffee>> BrewCoffee()
         {
-            int coffeeQueue = _coffee.CoffeeQueue.Count() + 1;
-            
-            if (coffeeQueue%5 == 0)
+            var coffee = new Coffee
             {
-                return StatusCode(503);
-            }
+                prepared = DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz"),
+                //For April Fools Testcase
+                //prepared = new DateTime(2023, 04, 01).ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz"),
+                message = "Your piping hot coffee is ready"
+            };
 
-            _coffee.CoffeeQueue.Add(new Coffee { Id = coffeeQueue+1});
+            _coffee.CoffeeQueue.Add(coffee);
             await _coffee.SaveChangesAsync();
 
-            /*if (_coffee.CoffeeQueue.Contains("04-01"))
+            if(_coffee.CoffeeQueue.Count()%5 == 0)
             {
-                return StatusCode(418);
-            }*/
+                return StatusCode(503,"");
+            }
 
-            return await _coffee.CoffeeQueue.Select().Where(c => c;
+            if (coffee.prepared.Contains("04-01"))
+            {
+                return StatusCode(418,"");
+            }
 
+            return Ok(CoffeeToDTO(coffee));
         }
 
         private static CoffeeDTO CoffeeToDTO(Coffee coffee) =>
@@ -44,5 +47,8 @@ namespace VirtualCoffeeMachineContAPI.Controller
                 message = coffee.message,
                 prepared = coffee.prepared,
             };
+
+
     }
 }
+

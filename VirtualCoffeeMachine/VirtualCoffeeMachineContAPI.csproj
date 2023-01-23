@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
-    <PackageReference Include="Stenn.EntityFrameworkCore.InMemory.Extensions.DependencyInjection" Version="7.9.49" />
+
   </ItemGroup>
 
 </Project>
